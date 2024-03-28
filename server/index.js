@@ -1,15 +1,17 @@
 // server/index.js
 
 import express from 'express';
-import morgan from 'morgan';
+// import morgan from 'morgan';
+import requestsID from 'express-request-id';
 import { logger } from './config/logger.js';
 
+// Init app
 const app = express();
 
 // Setup middleware
-app.use(
-  morgan('combined', { stream: { write: (message) => logger.info(message) } } )
-);
+app.use(requestsID());
+//app.use(morgan('combined', { stream: { write: (message) => logger.info(message) } }));
+app.use(logger.requests);
 
 app.get('/', (req, res, next) => {
   res.json({
@@ -19,7 +21,7 @@ app.get('/', (req, res, next) => {
 
 // No route found handler
 app.use((req, res, next) => {
-  const message = "Route not found";
+  const message = 'Route not found';
   const statusCode = 404;
 
   logger.warn(message);
