@@ -1,0 +1,7 @@
+{
+    "recommendations": [
+        "walkme.nodejs-extension-pack",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+    ]
+}
