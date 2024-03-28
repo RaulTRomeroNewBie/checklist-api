@@ -1,16 +1,13 @@
 // index.js
 
 import http from 'http';
+import { app } from './server/index.js';
+import { config } from './server/config/index.js';
 
-const hostname = "127.0.0.1";
-const port = 3000;
+const { port } = config.server;
 
-const server = http.createServer((req, res) => {
-    res.statusCode = 200;
-    res.setHeader('Const-Type', 'text/plain');
-    res.end('Hello World');
-});
+const server = http.createServer(app);
 
-server.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}/`);
+server.listen(port, () => {
+  console.log(`Server running at ${port}`);
 });
