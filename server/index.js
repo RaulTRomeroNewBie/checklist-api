@@ -1,9 +1,15 @@
 // server/index.js
 
 import express from 'express';
+import morgan from 'morgan';
 import { logger } from './config/logger.js';
 
 const app = express();
+
+// Setup middleware
+app.use(
+  morgan('combined', { stream: { write: (message) => logger.info(message) } } )
+);
 
 app.get('/', (req, res, next) => {
   res.json({
