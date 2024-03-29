@@ -4,7 +4,7 @@ import express from 'express';
 // import morgan from 'morgan';
 import requestsID from 'express-request-id';
 import { logger } from './config/logger.js';
-import { router } from './api/index.js';
+import { router } from './api/v1/index.js';
 
 // Init app
 const app = express();
@@ -25,6 +25,7 @@ app.route('/api/tasks')
 
 // Setup router and routes
 app.use('/api', router)
+app.use('/api/v1', router)
 
 // No route found handler
 app.use((req, res, next) => {
