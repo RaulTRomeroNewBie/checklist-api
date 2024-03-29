@@ -4,6 +4,7 @@ import express from 'express';
 // import morgan from 'morgan';
 import requestsID from 'express-request-id';
 import { logger } from './config/logger.js';
+import { router } from './api/index.js';
 
 // Init app
 const app = express();
@@ -13,11 +14,17 @@ app.use(requestsID());
 //app.use(morgan('combined', { stream: { write: (message) => logger.info(message) } }));
 app.use(logger.requests);
 
-app.get('/', (req, res, next) => {
-  res.json({
-    message: 'Welcome to the API',
-  });
+/*
+app.route('/api/tasks')
+  .get((req, res, next) => {
+    res.json({
+      message: 'GET all tasks',
+    });
 });
+*/
+
+// Setup router and routes
+app.use('/api', router)
 
 // No route found handler
 app.use((req, res, next) => {
