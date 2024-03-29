@@ -3,6 +3,7 @@
 import express from 'express';
 // import morgan from 'morgan';
 import requestsID from 'express-request-id';
+import bodyParser from 'body-parser';
 import { logger } from './config/logger.js';
 import { router } from './api/v1/index.js';
 
@@ -13,6 +14,10 @@ const app = express();
 app.use(requestsID());
 //app.use(morgan('combined', { stream: { write: (message) => logger.info(message) } }));
 app.use(logger.requests);
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+// parse application/json
+app.use(bodyParser.json());
 
 /*
 app.route('/api/tasks')
