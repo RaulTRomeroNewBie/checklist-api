@@ -1,18 +1,29 @@
 // server/api/v1/tasks/controller.js
 
-/*
-exports.all = (req, res, next) => {
-  res.json({ message: 'SHOW ALL' });
-}
-*/
+import { taskModel } from './model.js';
 
-export function create(req, res, next) {
+export async function create(req, res, next) {
   const { body = {} } = req;
-  res.json(body);
+  const document = new taskModel(body);
+
+  try {
+    const doc = await document.save();
+    res.status(201);
+    res.json(doc);
+  } catch (err) {
+    next(new Error(err));
+  }
+  
 };
 
-export function all(req, res, next) {
-  res.json([]);
+export async function all(req, res, next) {
+  try {
+    const docs = await taskModel.find({}).exec();
+    res.json(docs)
+  } catch (err) {
+    next(new Error(err));
+  }
+  
 };
 
 export function read(req, res, next) {

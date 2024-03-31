@@ -5,7 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "coss-env NODE_ENV=production node index",
+    "start": "cross-env NODE_ENV=production node index",
     "dev": "cross-env NODE_ENV=development nodemon --inspect",
     "test": "cross-env NODE_ENV=test  echo \"Error: no test specified\" && exit 1"
   },
