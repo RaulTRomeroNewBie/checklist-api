@@ -61,11 +61,12 @@ export async function read(req, res, next) {
 
 export async function update(req, res, next) {
   const { doc = {}, body = {} } = req;
-  // La función Object.assign mezcla el contenido del primer objeto doc con el
-  // contenido del segundo objeto body, solo a primer nivel, es decir, si tiene
-  // propiedades de mayor profundiad no lo realizará, por lo cual se recomienda
-  // para otros casos mas avanzados la función 'merge' de la librería 'lodash'.
-
+  /* cSpell:disable 
+  * La funcion 'Object.assign' mezcla el contenido del primer objeto 'doc' con el contenido 
+  * del segundo objeto 'body', solo a primer nivel, es decir, si tiene propiedades a mayor
+  * profundidad no lo realizará, por lo cual se recomienda para otros casos mas avanzados
+  * la función 'merge' de la libreria 'lodash' */
+  
   Object.assign(doc, body);
   try {
     const updated = await doc.save();

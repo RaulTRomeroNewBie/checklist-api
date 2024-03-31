@@ -2,16 +2,42 @@
 
 import mongoose from 'mongoose';
 
-const schema = mongoose.Schema;
+const { Schema }= mongoose;
 
-const taskSchema = new schema({
+const fields ={
   _id: String,
-  title: String,
-  description: String,
-  completed: Boolean,
-  url: String,
-  dueDate: Date,
-});
+  title: {
+    type: String,
+    required: true,
+    trim: true,
+    /* cSpell:disable */
+    maxlength: 128,
+    /* cSpell:enable */
+  },
+  completed: {
+    type: Boolean,
+    default: false, 
+  },
+  description:{
+    type: String,
+    default: '',
+    trim: true,
+    /* cSpell:disable */
+    maxlength: 128,
+    /* cSpell:enable */
+  },
+  url: {
+    type: String,
+    default: '',
+    trim: true,
+  },
+  dueDate: {
+    type: Date,
+    default: null,
+  },
+};
+
+const taskSchema = new Schema(fields, { timestamps: true});
 
 const taskModel = mongoose.model('task', taskSchema);
 
