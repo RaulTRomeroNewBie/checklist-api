@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 const schema = mongoose.Schema;
 
 const taskSchema = new schema({
+  _id: String,
   title: String,
   description: String,
   completed: Boolean,
