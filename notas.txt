@@ -1,0 +1,2 @@
+netstat -nao|findstr 3000
+taskkill /F /PID <PID>
